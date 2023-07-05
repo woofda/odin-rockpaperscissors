@@ -17,7 +17,7 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerLower = playerSelection.toLowerCase();
+    let playerLower = playerSelection.toLowerCase();
     if (playerLower === computerSelection) {
         return "It's a draw!";
     }
@@ -42,3 +42,7 @@ function playRound(playerSelection, computerSelection) {
         return `You lose! ${computerFormatted} beats ${playerLower}!`
     }
 }
+
+const playerSelection = "rock";
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
