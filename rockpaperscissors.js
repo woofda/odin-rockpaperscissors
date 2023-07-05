@@ -6,11 +6,11 @@ function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     switch (choice) {
         case 0:
-            return "Rock";
+            return "rock";
         case 1:
-            return "Paper";
+            return "paper";
         case 2:
-            return "Scissors";
+            return "scissors";
         default:
             console.warn("Computer choice error");
     }
@@ -43,6 +43,6 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+const ps = "rock";
+const cs = getComputerChoice();
+console.log(playRound(ps, cs));
