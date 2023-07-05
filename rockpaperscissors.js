@@ -19,30 +19,65 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     let playerLower = playerSelection.toLowerCase();
     if (playerLower === computerSelection) {
-        return "It's a draw!";
+        return 0;
     }
 
     let playerWon = false;
     if (playerLower === 'rock' && computerSelection === 'scissors') {
-        playerWon = true;
+        return 1;
     }
     else if (playerLower === 'paper' && computerSelection === 'rock') {
-        playerWon = true;
+       return 1;
     }
     else if (playerLower === 'scissors' && computerSelection === 'paper') {
-        playerWon = true;
+        return 1;
     }
 
-    if (playerWon) {
-        playerLower = playerLower.slice(0, 1).toUpperCase() + playerLower.slice(1);
-        return `You win! ${playerLower} beats ${computerSelection}!`
-    }
-    else {
-        let computerFormatted = computerSelection.slice(0, 1).toUpperCase() + computerSelection.slice(1);
-        return `You lose! ${computerFormatted} beats ${playerLower}!`
-    }
+    return -1;
 }
 
-const ps = "rock";
-const cs = getComputerChoice();
-console.log(playRound(ps, cs));
+function game() {
+    let gameOver = false;
+    let playerWins = 0;
+    let computerWins = 0;
+
+    while (!gameOver) {
+        let computerChoice = getComputerChoice();
+        let validInput = false;
+        let playerChoice;
+
+        while(!validInput){
+            playerChoice = prompt("Enter selection: ");
+            if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
+                validInput = true
+            }
+        }
+
+        let outcome = playRound(playerChoice, computerChoice);
+
+        switch (outcome) {
+            case 1:
+                console.log(`You win! ${playerChoice.slice(0,1).toUpperCase() + playerChoice.slice(1).toLowerCase()} beats ${computerChoice}!`)
+                playerWins++;
+                break;
+            case 0:
+                console.log("It's a draw!");
+                break;
+            case -1:
+                console.log(`You lose! ${computerChoice.slice(0,1).toUpperCase() + computerChoice.slice(1)} beats ${playerChoice.toLowerCase()}!`)
+                computerWins++;
+                break;
+            default:
+                console.warn("Outcome error");
+        }
+
+        if (playerWins >= 3) {
+            console.log("Player wins the best of 5!");
+            gameOver = true;
+        }
+        else if (computerWins >= 3) {
+            console.log("Sorry! Computer wins the best of 5!");
+            gameOver = true;
+        }
+    }
+}
