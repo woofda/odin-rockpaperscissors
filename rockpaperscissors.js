@@ -85,3 +85,13 @@ function game() {
         }
     }
 }
+
+// Button listeners
+const buttons = document.querySelectorAll("button");
+
+// Buttons trigger playRound with the appropriate choice
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log(playRound(button.id, getComputerChoice()));
+    });
+})
