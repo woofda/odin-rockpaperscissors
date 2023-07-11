@@ -83,15 +83,5 @@ function game() {
             default:
                 console.warn("Outcome error");
         }
-
-        // Check for best of 5 match completion
-        if (playerWins >= 3) {
-            console.log("Player wins the best of 5!");
-            gameOver = true;
-        }
-        else if (computerWins >= 3) {
-            console.log("Sorry! Computer wins the best of 5!");
-            gameOver = true;
-        }
     }
 }
