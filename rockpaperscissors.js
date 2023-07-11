@@ -86,12 +86,51 @@ function game() {
     }
 }
 
+// Results elements
+const outcomeText = document.querySelector('#outcome-text');
+const playerScore = document.querySelector('.player');
+const computerScore = document.querySelector('.computer');
+
+// Results updater
+function updateResults(result) {
+    let playerWins = parseInt(playerScore.innerText);
+    let computerWins = parseInt(computerScore.innerText);
+    if(isNaN(playerWins)){
+        playerWins = 0;
+        playerScore.innerText = playerWins;
+    }
+    if(isNaN(computerWins)) {
+        computerWins = 0;
+        computerScore.innerText = computerWins;
+    }
+
+    switch (result) {
+        case 1:
+            playerWins++;
+            playerScore.innerText = playerWins;
+            if(playerWins >= 5) outcomeText.innerText = 'Player wins the game!';
+            else outcomeText.innerText = 'Player wins the round';
+            break;
+        case 0:
+            outcomeText.innerText = "It's a draw";
+            break;
+        case -1:
+            computerWins++;
+            computerScore.innerText = computerWins;
+            if(computerWins >= 5) outcomeText.innerText = 'Computer wins the game!';
+            else outcomeText.innerText = 'Computer wins the round';
+            break;
+        default:
+            console.warn("Outcome error");
+    }
+}
+
 // Button listeners
 const buttons = document.querySelectorAll("button");
 
 // Buttons trigger playRound with the appropriate choice
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(playRound(button.id, getComputerChoice()));
+        updateResults(playRound(button.id, getComputerChoice()));
     });
 })
