@@ -1,6 +1,11 @@
 // Rock Paper Scissors 
 
 
+// Global variables
+let gameOver = false;
+let playerWins = 0;
+let computerWins = 0;
+
 // Randomly selects rock, paper, or scissors for computer
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -44,46 +49,10 @@ function playRound(playerSelection, computerSelection) {
     return -1;
 }
 
-function game() {
-    let gameOver = false;
-    let playerWins = 0;
-    let computerWins = 0;
-
-    // Best of 5 match loop
-    while (!gameOver) {
-        let computerChoice = getComputerChoice();
-        let validInput = false;
-        let playerChoice;
-
-        // Basic player input validation; only accepts
-        // 'rock' 'paper' and 'scissors' (non caps sensitive)
-        while(!validInput){
-            playerChoice = prompt("Enter selection: ");
-            if (playerChoice.toLowerCase() === 'rock' || playerChoice.toLowerCase() === 'paper' || playerChoice.toLowerCase() === 'scissors') {
-                validInput = true
-            }
-        }
-
-        // Plays single round and returns outcome
-        let outcome = playRound(playerChoice, computerChoice);
-
-        // Prints output and adds to win totals
-        switch (outcome) {
-            case 1:
-                console.log(`You win! ${playerChoice.slice(0,1).toUpperCase() + playerChoice.slice(1).toLowerCase()} beats ${computerChoice}!`)
-                playerWins++;
-                break;
-            case 0:
-                console.log("It's a draw!");
-                break;
-            case -1:
-                console.log(`You lose! ${computerChoice.slice(0,1).toUpperCase() + computerChoice.slice(1)} beats ${playerChoice.toLowerCase()}!`)
-                computerWins++;
-                break;
-            default:
-                console.warn("Outcome error");
-        }
-    }
+function resetGame() {
+    gameOver = false;
+    playerWins = 0;
+    computerWins = 0;
 }
 
 // Results elements
@@ -93,36 +62,36 @@ const computerScore = document.querySelector('.computer');
 
 // Results updater
 function updateResults(result) {
-    let playerWins = parseInt(playerScore.innerText);
-    let computerWins = parseInt(computerScore.innerText);
-    if(isNaN(playerWins)){
-        playerWins = 0;
-        playerScore.innerText = playerWins;
-    }
-    if(isNaN(computerWins)) {
-        computerWins = 0;
-        computerScore.innerText = computerWins;
+    if(!gameOver) {
+        switch (result) {
+            case 1:
+                playerWins++;
+                
+                if(playerWins >= 5) {
+                    gameOver = true;
+                    document.querySelector('#outcome-text').innerText = 'Player wins the game!';
+                }
+                else document.querySelector('#outcome-text').innerText = 'Player wins the round';
+                break;
+            case 0:
+                document.querySelector('#outcome-text').innerText = "It's a draw";
+                break;
+            case -1:
+                computerWins++;
+                if(computerWins >= 5) {
+                    gameOver = true;
+                    document.querySelector('#outcome-text').innerText = 'Computer wins the game!';
+                }
+                else document.querySelector('#outcome-text').innerText = 'Computer wins the round';
+                break;
+            default:
+                console.warn("Outcome error");
+        }
+
+        document.querySelector('.player').innerText = playerWins;
+        document.querySelector('.computer').innerText = computerWins;
     }
 
-    switch (result) {
-        case 1:
-            playerWins++;
-            playerScore.innerText = playerWins;
-            if(playerWins >= 5) outcomeText.innerText = 'Player wins the game!';
-            else outcomeText.innerText = 'Player wins the round';
-            break;
-        case 0:
-            outcomeText.innerText = "It's a draw";
-            break;
-        case -1:
-            computerWins++;
-            computerScore.innerText = computerWins;
-            if(computerWins >= 5) outcomeText.innerText = 'Computer wins the game!';
-            else outcomeText.innerText = 'Computer wins the round';
-            break;
-        default:
-            console.warn("Outcome error");
-    }
 }
 
 // Button listeners
