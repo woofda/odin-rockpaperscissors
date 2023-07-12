@@ -49,10 +49,25 @@ function playRound(playerSelection, computerSelection) {
     return -1;
 }
 
+// Resets global variables on new game
 function resetGame() {
     gameOver = false;
     playerWins = 0;
     computerWins = 0;
+
+    document.querySelector('.reset').remove();
+    document.querySelector('.player').innerText = playerWins;
+    document.querySelector('.computer').innerText = computerWins;
+    document.querySelector('#outcome-text').innerText = "";
+}
+
+// Shows reset button on game completion
+function showReset() {
+    const resetButton = document.createElement('button');
+    resetButton.addEventListener('click', () => resetGame());
+    resetButton.textContent = "New game";
+    resetButton.classList.add('reset');
+    document.querySelector('body').appendChild(resetButton);
 }
 
 // Results elements
@@ -70,6 +85,7 @@ function updateResults(result) {
                 if(playerWins >= 5) {
                     gameOver = true;
                     document.querySelector('#outcome-text').innerText = 'Player wins the game!';
+                    showReset();
                 }
                 else document.querySelector('#outcome-text').innerText = 'Player wins the round';
                 break;
@@ -81,6 +97,7 @@ function updateResults(result) {
                 if(computerWins >= 5) {
                     gameOver = true;
                     document.querySelector('#outcome-text').innerText = 'Computer wins the game!';
+                    showReset();
                 }
                 else document.querySelector('#outcome-text').innerText = 'Computer wins the round';
                 break;
