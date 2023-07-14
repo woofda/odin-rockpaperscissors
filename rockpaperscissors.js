@@ -59,10 +59,17 @@ function resetGame() {
     document.querySelector('.player').innerText = playerWins;
     document.querySelector('.computer').innerText = computerWins;
     document.querySelector('#outcome-text').innerText = "";
+
+    for(button of buttons) {
+        button.classList.add("active");
+    }
 }
 
 // Shows reset button on game completion
 function showReset() {
+    for(button of buttons) {
+        button.classList.remove("active");
+    }
     const resetButton = document.createElement('button');
     resetButton.addEventListener('click', () => resetGame());
     resetButton.textContent = "New game";

@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="rockpaperscissors.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissors">Scissors</button>
-    <div id="results">
-        <div class="results player"></div>
-        <div id="outcome-text"></div>
-        <div class="results computer"></div>
-    </div>
+    <header>
+        <h1>Rock <span class="yellow">Paper</span> Scissors</h1>
+    </header>
+    <main>
+        <div class="container">
+            <button id="rock" class="choice-button active">
+                <i class="fa-solid fa-hand-fist"></i>
+            </button>
+            <button id="paper" class="choice-button active">
+                <i class="fa-solid fa-hand"></i>
+            </button>
+            <button id="scissors" class="choice-button active">
+                <i class="fa-solid fa-hand-peace"></i>
+            </button>
+        </div>
+        <div id="results">
+            <div class="results player"></div>
+            <div id="outcome-text"></div>
+            <div class="results computer"></div>
+        </div>
+    </main>
 
     <script src="rockpaperscissors.js"></script>
 </body>
