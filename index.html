@@ -11,27 +11,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
+
     <header>
         <h1>Rock <span class="yellow">Paper</span> Scissors</h1>
     </header>
+
     <main>
         <div class="container">
-            <button id="rock" class="choice-button active">
-                <i class="fa-solid fa-hand-fist"></i>
-            </button>
-            <button id="paper" class="choice-button active">
-                <i class="fa-solid fa-hand"></i>
-            </button>
-            <button id="scissors" class="choice-button active">
-                <i class="fa-solid fa-hand-peace"></i>
-            </button>
-        </div>
-        <div id="results">
-            <div class="results player"></div>
-            <div id="outcome-text"></div>
-            <div class="results computer"></div>
+            <div class="side-container player">
+                <div class="results player-score colorable player">0</div>
+                <div class="choice-container player-side">
+                    <button id="rock" class="choice-button active colorable">
+                        <i class="fa-solid fa-hand-fist"></i>
+                    </button>
+                    <button id="paper" class="choice-button active colorable">
+                        <i class="fa-solid fa-hand"></i>
+                    </button>
+                    <button id="scissors" class="choice-button active colorable">
+                        <i class="fa-solid fa-hand-peace"></i>
+                    </button>
+                </div>
+                <h2 class="colorable player">Player</h2>
+            </div>
+            <div id="outcome-text" class="colorable">First to 5 wins!</div>
+            <div class="side-container computer">
+                <div class="results computer-score colorable computer">0</div>
+                <div class="choice-container computer-side">
+                    <div id="comp-rock" class="choice-button colorable">
+                        <i class="fa-solid fa-hand-fist"></i>
+                    </div>
+                    <div id="comp-paper" class="choice-button colorable">
+                        <i class="fa-solid fa-hand"></i>
+                    </div>
+                    <div id="comp-scissors" class="choice-button colorable">
+                        <i class="fa-solid fa-hand-peace"></i>
+                    </div>
+                </div>
+                <h2 class="colorable computer">Computer</h2>
+            </div>
         </div>
     </main>
+
+    <footer>🐕 woofda 🐕</footer>
 
     <script src="rockpaperscissors.js"></script>
 </body>
